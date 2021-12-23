@@ -1,15 +1,16 @@
 ### Création des Répértoires du projet :
 > Nous commençons par créer le repertoire principal du projet en ligne de commande :
-$ mkdir Groupomania
+
+>$ mkdir Groupomania
 Puis dans ce repertoire, nous créons les deux autres répertoires de base qui sont le backend et le frontend :
-$ cd Groupomania
-Groupomania $ mkdir backend
+>$ cd Groupomania
+>Groupomania $ mkdir backend
 et
-Groupomania $ mkdir frontend
+>Groupomania $ mkdir frontend
 
 ## Initialisation et construction du BACKEND de notre projet :
 dans le dossier backend, nous commençons par l'initialiser :
-backend $   npm init -y
+>backend $   npm init -y
 Puis nous installons tout ce que nous aurions besoin :
 >
     • express
