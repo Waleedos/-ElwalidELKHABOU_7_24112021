@@ -2,10 +2,15 @@
 > Nous commençons par créer le repertoire principal du projet en ligne de commande :
 
 >$ mkdir Groupomania
+
 Puis dans ce repertoire, nous créons les deux autres répertoires de base qui sont le backend et le frontend :
+
 >$ cd Groupomania
+
 >Groupomania $ mkdir backend
+
 et
+
 >Groupomania $ mkdir frontend
 
 ## Initialisation et construction du BACKEND de notre projet :
