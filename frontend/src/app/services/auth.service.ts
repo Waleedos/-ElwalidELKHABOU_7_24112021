@@ -81,9 +81,9 @@ export class AuthService {
         if (response.status === 200) {
           this.user = response.body;
           this.notificationService.getNotifications();
-        } else {
-          this.log(`Erreur: Une erreur s'est produite!`);
-        }
+        } //else {
+          //this.log(`Erreur: Une erreur s'est produite!`);
+        //}
       });
   }
 
