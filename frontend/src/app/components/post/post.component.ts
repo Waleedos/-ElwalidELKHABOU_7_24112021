@@ -15,6 +15,10 @@ import { HttpResponse } from '../../interfaces/HttpResponse.interface';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
+
+
+// Déclaration des propriétés avec implémentation de l'interface "ngOnInit" du component
+// pour respecter les methodes utilisées.
 export class PostComponent implements OnInit {
 
   private postId: number;
@@ -30,6 +34,8 @@ export class PostComponent implements OnInit {
     private commentsService: CommentsService
   ) { }
 
+  
+  // Initialisation de la propriété déclarée
   public ngOnInit(): void {
     this.postId = +this.route.snapshot.paramMap.get('id');
     this.getPublication();
@@ -46,6 +52,7 @@ export class PostComponent implements OnInit {
       });
   }
 
+  /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/  
   public onDeletePublication(): void {
     this.publicationsService.deletePublication(this.postId)
       .subscribe((response: HttpResponse) => {
@@ -58,6 +65,7 @@ export class PostComponent implements OnInit {
       });
   }
 
+  /*** Utilisation de la méthode de réaction "onlike" à cet evenement ***/   
   public onlike(event: Event): void {
     const postId = this.postId;
     const rate: number = parseInt(event.target[1].value, 10);
@@ -71,6 +79,7 @@ export class PostComponent implements OnInit {
       });
   }
 
+  /*** Utilisation de la méthode de réaction "onAddComment" à cet evenement ***/ 
   public onAddComment(event): void {
     const content: string = event.target[0].value;
     const postId: number = parseInt(event.target[1].value, 10);
@@ -84,6 +93,7 @@ export class PostComponent implements OnInit {
       });
   }
 
+  /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/
   public onDeleteComment(event): void {
     const commentId: number = parseInt(event.target[0].value, 10);
     this.commentsService.deleteComment(commentId)

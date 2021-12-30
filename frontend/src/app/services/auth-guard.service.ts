@@ -11,6 +11,9 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
+
+// Implémentation de l'interface "CanActivate"
 export class AuthGuardService implements CanActivate {
 
   private backendServer = environment.backendServer;

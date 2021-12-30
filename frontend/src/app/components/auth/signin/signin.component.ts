@@ -11,6 +11,10 @@ import { HttpResponse } from '../../../interfaces/HttpResponse.interface';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
+
+
+// Déclaration des propriétés avec implémentation de l'interface "ngOnInit" du component
+// pour respecter les methodes utilisées.
 export class SigninComponent implements OnInit {
 
   public signInForm: FormGroup;
@@ -21,6 +25,7 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) { }
 
+  // Initialisation des propriétés déclarées
   public ngOnInit(): void {
     this.initForm();
   }
@@ -47,6 +52,7 @@ export class SigninComponent implements OnInit {
     };
   }
 
+  /*** Utilisation de la méthode de réaction "onSubmit" à cet evenement ***/
   public onSubmit(): void {
     const name: string = this.signInForm.get('name').value;
     const email: string = this.signInForm.get('email').value;

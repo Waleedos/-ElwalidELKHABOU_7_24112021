@@ -22,8 +22,12 @@
         <div class="header--nav--notifs--number" *ngIf="notificationsService.notifications.length > 0">{{notificationsService.notifications.length}}</div>
       </a>
       <a routerLink="/profile/{{authService.user.userId}}" class="header--nav--profile" title="Mon profil">
+
+        <!-- Liaison des valeurs des propriétés par attributs HTML -->
         <img [src]="authService.user.pictureUrl === null ? './assets/anonymousUser.svg' : authService.user.pictureUrl" alt="Photo de profil">
       </a>
+
+      <!-- Relier la methode "onLogout" à l'evenement du click sur le bouton "Logout" -->       
       <a routerLink="/logoff" aria-label="Se déconnecter" title="Se déconnecter" (click)="onLogout()">
         <i class="fas fa-power-off"></i>
       </a>

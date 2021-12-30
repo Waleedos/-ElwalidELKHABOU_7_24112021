@@ -13,6 +13,10 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
+
+
+// Déclaration des propriétés avec implémentation de l'interface "ngOnInit" du component
+// pour respecter les methodes utilisées.
 export class UsersComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
@@ -22,14 +26,19 @@ export class UsersComponent implements OnInit {
     private messagesService: MessagesService
   ) { }
 
+  
+  // Initialisation de la propriété déclarée
   public ngOnInit(): void {
     this.usersService.getAllUsers();
 
     this.searchTerms.pipe(
+
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
+
       // ignore new term if same as previous term
       distinctUntilChanged(),
+      
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.usersService.searchUsers(term)),
     ).subscribe((response: HttpResponse) => {

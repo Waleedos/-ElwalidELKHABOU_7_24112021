@@ -15,6 +15,10 @@ import { HttpResponse } from '../../interfaces/HttpResponse.interface';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+
+// Déclaration des propriétés avec implémentation de l'interface "ngOnInit" du component
+// pour respecter les methodes utilisées.
 export class HomeComponent implements OnInit {
 
   public posts: Post[]; // Posts affichés actuellement
@@ -31,13 +35,12 @@ export class HomeComponent implements OnInit {
     public imageService: ImageService
   ) { }
 
+  // Initialisation des propriétés déclarées
   public ngOnInit(): void {
     this.getPostsFromStart(this.postsBatch);
   }
 
-  /**
-   * Récupérer tous les posts, avec leurs commentaires et leur likes/dislikes
-   */
+  /*** Récupérer tous les posts, avec leurs commentaires et leur likes/dislikes  */
   // Récupérer tous les posts depuis le début jusqu'au chargement actuel
   private getPostsFromStart(numberOfPosts: number): void {
     this.publicationsService.getPublications(numberOfPosts, 0)
@@ -73,6 +76,8 @@ export class HomeComponent implements OnInit {
   /**
    * Publication d'un nouveau post
    */
+
+  /*** Utilisation de la méthode de réaction "onSubmit" à cet evenement ***/  
   public onSubmitNewPost(event: Event): void {
     const content: string = event.target[0].value;
     const base64Image = this.imageService.croppedImage;
@@ -105,6 +110,8 @@ export class HomeComponent implements OnInit {
   /**
    * Suppression d'une publication
    */
+
+  /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/
   public onDeletePublication(event: Event): void {
     const postId: number = parseInt(event.target[0].value, 10);
     this.publicationsService.deletePublication(postId)
@@ -122,6 +129,8 @@ export class HomeComponent implements OnInit {
   /**
    * Ajout d'un commentaire
    */
+
+  /*** Utilisation de la méthode de réaction "onAddComment" à cet evenement ***/ 
   public onAddComment(event: Event): void {
     const content: string = event.target[0].value;
     const postId: number = parseInt(event.target[1].value, 10);
@@ -138,6 +147,8 @@ export class HomeComponent implements OnInit {
   /**
    * Suppression d'un commentaire
    */
+  
+  /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/  
   public onDeleteComment(event: Event): void {
     const commentId: number = parseInt(event.target[0].value, 10);
     this.commentsService.deleteComment(commentId)
@@ -153,6 +164,8 @@ export class HomeComponent implements OnInit {
   /**
    * Like/dislike/annulation d'une publication
    */
+
+  /*** Utilisation de la méthode de réaction "onlike" à cet evenement ***/ 
   public onlike(event: Event): void {
     const postId: number = parseInt(event.target[0].value, 10);
     const rate: number = parseInt(event.target[1].value, 10);

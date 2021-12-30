@@ -5,6 +5,8 @@
     <header>
       <div>
         <a routerLink="/profile/{{post.userId}}">
+          
+          <!-- Liaison des valeurs des propriétés par attributs HTML -->
           <img
             [src]="post.userPicture===null ? './assets/anonymousUser.svg' : post.userPicture"
             alt="Photo de profil de {{post.userName}}">
@@ -29,6 +31,8 @@
     <!-- Main Publication : Photo et/ou contenu -->
     <main>
       <div *ngIf="post.postImage !== null" class="picture">
+
+        <!-- Liaison des valeurs des propriétés par attributs HTML -->        
         <img [src]="post.postImage" alt="Photo de la publication">
       </div>
       <div *ngIf="post.postContent !== null" class="content">
@@ -38,6 +42,8 @@
     <!-- Footer Publication : likes et commentaires -->
     <footer>
       <div class="likes">
+
+        <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->
         <form (submit)="onlike($event)">
           <input type="hidden" name="postId" [value]="post.postId">
           <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === 1 ? 0 : 1">
@@ -46,6 +52,8 @@
             {{post.likes.LikesNumber}}
           </button>
         </form>
+
+        <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->
         <form (submit)="onlike($event)">
           <input type="hidden" name="postId" [value]="post.postId">
           <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === -1 ? 0 : -1">
@@ -59,10 +67,13 @@
         <h3>Commentaires</h3>
         <div *ngFor="let comment of post.comments" class="comments--comment">
           <div>
+            
+            <!-- Liaison des valeurs des propriétés par attributs HTML -->
             <img
               [src]="comment.userPicture===null ? './assets/anonymousUser.svg' : comment.userPicture"
               alt="Photo de profil de {{comment.userName}}">
           </div>
+
           <div class="comments--comment--fluid">
             <p class="title">
               <span>{{comment.userName}}</span> le {{comment.commentDate | date: "dd/MM/y à HH:mm" : "UTC+2"}}
@@ -79,7 +90,11 @@
             <button type="submit" aria-label="Supprimer le commentaire"><i class="fas fa-trash"></i></button>
           </form>
         </div>
+
+        <!-- Utilisation de la méthode de réaction "onAddComment" à cet evenement -->         
         <form class="comments--add" (submit)="onAddComment($event)">
+
+          <!-- Liaison des valeurs des propriétés par attributs HTML -->
           <img [src]="authService.user.pictureUrl===null ? './assets/anonymousUser.svg' : authService.user.pictureUrl" alt="Votre photo de profil">
           <label for="ajout-commentaire" class="hidden">votre commentaire</label>
           <input id="ajout-commentaire" type="text" placeholder="Votre commentaire">

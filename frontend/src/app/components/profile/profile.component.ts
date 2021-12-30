@@ -19,6 +19,10 @@ import { CommentsService } from 'src/app/services/comments.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+
+
+// Déclaration des propriétés avec implémentation de l'interface "ngOnInit" du component
+// pour respecter les methodes utilisées.
 export class ProfileComponent implements OnInit {
 
   public userDetails: UserDetails;
@@ -38,6 +42,8 @@ export class ProfileComponent implements OnInit {
     private commentsService: CommentsService
   ) { }
 
+  
+  // Initialisation de la propriété déclarée
   public ngOnInit(): void {
     this.getUser();
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -72,6 +78,8 @@ export class ProfileComponent implements OnInit {
   /**
    * Mise à jour de la description du profil utilisateur
    */
+
+  /*** Utilisation de la méthode de réaction "onUpdate" à cet evenement ***/ 
   public onUpdateOutline(event: Event): void {
     if (event.target[0].value && event.target[0].value !== '') {
       const newOutline: string = event.target[0].value;
@@ -90,6 +98,8 @@ export class ProfileComponent implements OnInit {
   /**
    * Changement du mot de passe de l'utilisateur
    */
+  
+  /*** Utilisation de la méthode de réaction "onChange" à cet evenement ***/  
   public onChangePassword(): void {
     const { oldPassword, newPassword } = this.passwordChangeForm.value;
     if (newPassword && newPassword !== '' && oldPassword && oldPassword !== '') {
@@ -113,6 +123,8 @@ export class ProfileComponent implements OnInit {
   public onDeleteClicked(): void {
     document.getElementById('delete-confirm').classList.toggle('profile--delete-confirm__hidden');
   }
+  
+  /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/  
   public onDeleteConfirmed(): void {
     this.usersService.deleteUser(this.userDetails.id)
       .subscribe((response: HttpResponse) => {
@@ -129,6 +141,8 @@ export class ProfileComponent implements OnInit {
   /**
    * Donner / Supprimer les droits d'admin
    */
+
+  /*** Utilisation de la méthode de réaction "onChange" à cet evenement ***/ 
   public onChangeAdmin(isAdmin: number): void {
     this.usersService.updateAdminRights(this.userDetails.id, isAdmin)
       .subscribe((response: HttpResponse) => {
@@ -183,6 +197,8 @@ export class ProfileComponent implements OnInit {
   /**
    * Suppression d'une publication
    */
+
+  /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/
   public onDeletePublication(event: Event): void {
     const postId: number = parseInt(event.target[0].value, 10);
     this.publicationsService.deletePublication(postId)
@@ -199,6 +215,8 @@ export class ProfileComponent implements OnInit {
   /**
    * Ajout d'un commentaire
    */
+
+  /*** Utilisation de la méthode de réaction "onAddComment" à cet evenement ***/ 
   public onAddComment(event: Event): void {
     const content: string = event.target[0].value;
     const postId: number = parseInt(event.target[1].value, 10);
@@ -215,6 +233,8 @@ export class ProfileComponent implements OnInit {
   /**
    * Suppression d'un commentaire
    */
+
+  /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/
   public onDeleteComment(event: Event): void {
     const commentId: number = parseInt(event.target[0].value, 10);
     this.commentsService.deleteComment(commentId)
@@ -230,6 +250,8 @@ export class ProfileComponent implements OnInit {
   /**
    * Like/dislike/annulation d'une publication
    */
+  
+  /*** Utilisation de la méthode de réaction "onlike" à cet evenement ***/   
   public onlike(event: Event): void {
     const postId: number = parseInt(event.target[0].value, 10);
     const rate: number = parseInt(event.target[1].value, 10);

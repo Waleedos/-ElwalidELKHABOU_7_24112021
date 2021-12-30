@@ -7,6 +7,8 @@
     <form (submit)="onSubmitNewPost($event)">
       <h2>Exprimez-vous...</h2>
       <p>
+        
+        <!-- Liaison des valeurs des propriétés par attributs HTML -->
         <img [src]="imageService.croppedImage" class="image-preview" alt="">
       </p>
       <p>
@@ -32,6 +34,8 @@
         (imageLoaded)="imageService.imageLoaded()"
         (loadImageFailed)="imageService.loadImageFailed()"
     ></image-cropper>
+
+    <!-- Relier la methode "onCroppedImageDone" à l'evenement du click sur le bouton "OK=Ajout d'image" -->     
     <button class="btn" (click)="imageService.onCroppedImageDone()">Ok</button>
     </div>
   </section>
@@ -44,6 +48,7 @@
       <header>
         <div>
           <a routerLink="/profile/{{post.userId}}">
+            <!-- Liaison des valeurs des propriétés par attributs HTML -->
             <img
               [src]="post.userPicture===null ? './assets/anonymousUser.svg' : post.userPicture"
               alt="Photo de profil de {{post.userName}}">
@@ -65,11 +70,17 @@
           <button type="submit" aria-label="Supprimer la publication"><i class="fas fa-trash"></i></button>
         </form>
       </header>
+
+      
       <!-- Main Publication : Photo et/ou contenu -->
+     
       <main>
         <div *ngIf="post.postImage !== null" class="picture">
+
+          <!-- Liaison des valeurs des propriétés par attributs HTML -->
           <img [src]="post.postImage" alt="Photo de la publication">
         </div>
+
         <div *ngIf="post.postContent !== null" class="content">
           <p>{{post.postContent}}</p>
         </div>
@@ -77,6 +88,8 @@
       <!-- Footer Publication : likes et commentaires -->
       <footer>
         <div class="likes">
+
+          <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->  
           <form (submit)="onlike($event)">
             <input type="hidden" name="postId" [value]="post.postId">
             <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === 1 ? 0 : 1">
@@ -85,6 +98,8 @@
               {{post.likes.LikesNumber}}
             </button>
           </form>
+
+          <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->
           <form (submit)="onlike($event)">
             <input type="hidden" name="postId" [value]="post.postId">
             <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === -1 ? 0 : -1">
@@ -98,10 +113,13 @@
           <h3>Commentaires</h3>
           <div *ngFor="let comment of post.comments" class="comments--comment">
             <div>
+              
+              <!-- Liaison des valeurs des propriétés par attributs HTML -->
               <img
                 [src]="comment.userPicture===null ? './assets/anonymousUser.svg' : comment.userPicture"
                 alt="Photo de profil de {{comment.userName}}">
             </div>
+
             <div class="comments--comment--fluid">
               <p class="title">
                 <span>{{comment.userName}}</span> le {{comment.commentDate | date: "dd/MM/y à HH:mm" : "UTC+2"}}
@@ -118,7 +136,11 @@
               <button type="submit" aria-label="Supprimer le commentaire"><i class="fas fa-trash"></i></button>
             </form>
           </div>
+
+          <!-- Utilisation de la méthode de réaction "onAddComment" à cet evenement -->          
           <form class="comments--add" (submit)="onAddComment($event)">
+
+            <!-- Liaison des valeurs des propriétés par attributs HTML -->
             <img [src]="authService.user.pictureUrl===null ? './assets/anonymousUser.svg' : authService.user.pictureUrl" alt="Votre photo de profil">
             <label [for]="'add-comment-' + post.postId" class="hidden">Votre commentaire</label>
             <input [id]="'add-comment-' + post.postId" type="text" placeholder="Votre commentaire">

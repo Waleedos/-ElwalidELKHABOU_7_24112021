@@ -14,6 +14,8 @@
     <a *ngFor="let user of usersService.users"
       [routerLink]="'/profile/' + user.id"
       class="users--display--card" >
+
+      <!-- Liaison des valeurs des propriétés par attributs HTML -->
       <img [src]="user.pictureurl===null ? './assets/anonymousUser.svg' : user.pictureurl "
       alt="Photo de profil de {{user.name}}">
       <p>{{user.name}}</p>

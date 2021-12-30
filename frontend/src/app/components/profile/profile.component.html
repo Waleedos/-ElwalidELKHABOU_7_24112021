@@ -6,6 +6,8 @@
       <div class="profile--image">
         <!--  ################### PHOTO DE PROFIL ################### -->
         <h2>Photo de profil</h2>
+
+        <!-- Liaison des valeurs des propriétés par attributs HTML -->
         <img [src]="userDetails.pictureurl === null ? './assets/anonymousUser.svg' : userDetails.pictureurl" alt="Photo de profil de {{userDetails.name}}">
         <form *ngIf="userDetails.id === authService.user.userId">
           <label for="picture" class="btn label-file" aria-label="Changer sa photo de profil">Changer ma photo de profil</label>
@@ -36,7 +38,11 @@
           <h2 class="mt">Droits d'administration</h2>
           <p *ngIf="this.userDetails.isadmin === 1">{{userDetails.name}} est admin</p>
           <p *ngIf="this.userDetails.isadmin === 0">{{userDetails.name}} n'est pas admin</p>
+
+          <!-- Relier la methode "onChangeAdmin" à l'evenement du click sur le bouton "Donner Droits Admin" -->           
           <button class="btn btn-admin" (click)="onChangeAdmin(1)" *ngIf="this.userDetails.isadmin === 0">Donner les droits d'admin</button>
+          
+          <!-- Relier la methode "onChangeAdmin" à l'evenement du click sur le bouton "Retirer Droits Admin" -->          
           <button class="btn btn-admin btn-admin__danger" (click)="onChangeAdmin(0)" *ngIf="this.userDetails.isadmin === 1">Retirer les droits d'admin</button>
         </div>
       </div>
@@ -59,9 +65,13 @@
       <div>
         <!--  ################### SUPPRESSION COMPTE ################### -->
         <h2>Supprimer mon compte</h2>
+
+        <!-- Relier la methode "onDeleteClicked" à l'evenement du click sur le bouton "Supprimer profil" -->        
         <button class="btn btn-danger" (click)="onDeleteClicked()">Supprimer</button>
         <div id="delete-confirm" class="profile--delete-confirm profile--delete-confirm__hidden">
           <p>Êtes-vous vraiment sûr?<br>(impossible de revenir en arrière)</p>
+
+          <!-- Relier la methode "onDeleteConfirmed" à l'evenement du click sur le bouton "Confirmer la supression" -->          
           <button class="btn btn-danger" (click)="onDeleteConfirmed()">Oui, supprimer</button>
         </div>
       </div>
@@ -78,6 +88,8 @@
         (imageLoaded)="imageService.imageLoaded()"
         (loadImageFailed)="imageService.loadImageFailed()"
     ></image-cropper>
+
+    <!-- Relier la methode "onCroppedImageDone" à l'evenement du click sur le bouton "Validation" -->    
     <button class="btn" (click)="onCroppedImageDone()">Valider</button>
     </div>
   </section>
@@ -90,6 +102,8 @@
       <header>
         <div>
           <a routerLink="/profile/{{post.userId}}">
+            
+            <!-- Liaison des valeurs des propriétés par attributs HTML -->
             <img
               [src]="post.userPicture===null ? './assets/anonymousUser.svg' : post.userPicture"
               alt="Photo de profil de {{post.userName}}">
@@ -114,6 +128,8 @@
       <!-- Main Publication : Photo et/ou contenu -->
       <main>
         <div *ngIf="post.postImage !== null" class="picture">
+
+          <!-- Liaison des valeurs des propriétés par attributs HTML -->
           <img [src]="post.postImage" alt="Photo de la publication">
         </div>
         <div *ngIf="post.postContent !== null" class="content">
@@ -123,6 +139,8 @@
       <!-- Footer Publication : likes et commentaires -->
       <footer>
         <div class="likes">
+
+          <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->          
           <form (submit)="onlike($event)">
             <input type="hidden" name="postId" [value]="post.postId">
             <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === 1 ? 0 : 1">
@@ -131,6 +149,8 @@
               {{post.likes.LikesNumber}}
             </button>
           </form>
+
+          <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->          
           <form (submit)="onlike($event)">
             <input type="hidden" name="postId" [value]="post.postId">
             <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === -1 ? 0 : -1">
@@ -144,6 +164,8 @@
           <h3>Commentaires</h3>
           <div *ngFor="let comment of post.comments" class="comments--comment">
             <div>
+
+              <!-- Liaison des valeurs des propriétés par attributs HTML -->
               <img
                 [src]="comment.userPicture===null ? './assets/anonymousUser.svg' : comment.userPicture"
                 alt="Photo de profil de {{comment.userName}}">
@@ -164,7 +186,11 @@
               <button type="submit" aria-label="Supprimer du commentaire"><i class="fas fa-trash"></i></button>
             </form>
           </div>
+
+          <!-- Utilisation de la méthode de réaction "onAddComment" à cet evenement -->           
           <form class="comments--add" (submit)="onAddComment($event)">
+
+            <!-- Liaison des valeurs des propriétés par attributs HTML -->
             <img [src]="authService.user.pictureUrl===null ? './assets/anonymousUser.svg' : authService.user.pictureUrl" alt="Votre photo de profil">
             <label [for]="'add-comment-' + post.postId" class="hidden">Votre commentaire</label>
             <input [id]="'add-comment-' + post.postId" type="text" placeholder="Votre commentaire">
