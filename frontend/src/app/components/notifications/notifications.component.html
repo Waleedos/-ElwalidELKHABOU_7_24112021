@@ -7,9 +7,12 @@
       <button class="btn--danger" (click)="onDeleteAll()">Supprimer tout</button>
     </section>
     
-    <!-- Utilisation de la directive condition "*ngIf" pour afficher ou non à l'utilisateur 
+    <!-- Utilisation de la directive condition "*ngIf" pour ajouter ou non au DOM pour cet l'utilisateur 
       qu'il a eu une reaction de quelqu'un sur son post ou un commentaire ou une réponse a son commentaire -->       
     <section *ngIf="notificationsService.notifications.length > 0">
+
+      <!-- Utilisation de la directive *ngFor" pour afficher un tableau au lieu d'une variable par
+      element, c.a.d on insere une instance de ce component et associe sa propriété à un element du tableau -->      
       <div *ngFor="let notification of notificationsService.notifications" class="notifications--list">
         <a [routerLink]="'/post/' + notification.postId">
           <p *ngIf="notification.type === 'reaction'">{{notification.initiator}} a réagi à votre post</p>

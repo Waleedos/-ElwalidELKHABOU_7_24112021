@@ -7,7 +7,7 @@
   
   h1 {
     text-align: center;
-    color: rgb(0, 3, 5);
+    color: rgb(250, 225, 4);
   }
   &--add {
     max-width: 800px;
@@ -148,7 +148,7 @@
             }
           }
           .alreadyLiked {
-            color: $color-like-like;
+            color: #0358d7;
           }
           .alreadyDisliked {
             color: $color-like-dislike;

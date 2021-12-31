@@ -43,6 +43,9 @@
   <!-- LISTE DES DERNIERES PUBLICATIONS -->
 
   <section class="publications--list">
+
+    <!-- Utilisation de la directive *ngFor" pour afficher un tableau au lieu d'une variable par
+    element, c.a.d on insere une instance de ce component et associe sa propriété à un element du tableau -->     
     <article *ngFor="let post of posts">
       <!-- Header Publication : photo de profil, nom, date, et delete -->
       <header>
@@ -58,9 +61,13 @@
           <p class="name">
             <a routerLink="/profile/{{post.userId}}">{{post.userName}}</a>
           </p>
+          
           <p class="date">
+
+            <!-- Utilisation du Pipe "| date" pour le formatage de l'affichage des données dates -->            
             Publié le {{post.postDate | date: "dd/MM/y à HH:mm" : "UTC+2"}}
           </p>
+
         </div>
         <form
           class="delete-post"
@@ -93,6 +100,9 @@
           <form (submit)="onlike($event)">
             <input type="hidden" name="postId" [value]="post.postId">
             <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === 1 ? 0 : 1">
+
+            <!-- Utilisation de la directive *ngClass" pour la classe (post.likes.currentUserReaction) afin de nous permettre de changer 
+            la couleur des "Likes" dans le fichier .scss si la condition "alreadyLiked" est remplie. -->            
             <button type="submit" [ngClass]="post.likes.currentUserReaction === 1 ? 'alreadyLiked' : ''" aria-label="like la publication">
               <i class="fas fa-thumbs-up"></i>
               {{post.likes.LikesNumber}}
@@ -103,6 +113,9 @@
           <form (submit)="onlike($event)">
             <input type="hidden" name="postId" [value]="post.postId">
             <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === -1 ? 0 : -1">
+
+            <!-- Utilisation de la directive *ngClass" pour la classe (post.likes.currentUserReaction) afin de nous permettre de changer 
+            la couleur des "Likes" dans le fichier .scss si la condition "alreadyDisliked" est remplie. -->              
             <button type="submit" [ngClass]="post.likes.currentUserReaction === -1 ? 'alreadyDisliked' : ''" aria-label="dislike la publication">
               <i class="fas fa-thumbs-down"></i>
               {{post.likes.DislikesNumber}}
@@ -121,9 +134,13 @@
             </div>
 
             <div class="comments--comment--fluid">
+              
               <p class="title">
+
+                <!-- Utilisation du Pipe "| date" pour le formatage de l'affichage des données dates -->
                 <span>{{comment.userName}}</span> le {{comment.commentDate | date: "dd/MM/y à HH:mm" : "UTC+2"}}
               </p>
+              
               <p>
                 {{comment.commentContent}}
               </p>

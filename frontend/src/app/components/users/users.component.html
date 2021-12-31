@@ -11,6 +11,9 @@
       (input)="searchUser(searchBox.value)">
   </section>
   <section class="users--display">
+
+    <!-- Utilisation de la directive *ngFor" pour afficher un tableau au lieu d'une variable par
+    element, c.a.d on insere une instance de ce component et associe sa propriété à un element du tableau -->    
     <a *ngFor="let user of usersService.users"
       [routerLink]="'/profile/' + user.id"
       class="users--display--card" >
