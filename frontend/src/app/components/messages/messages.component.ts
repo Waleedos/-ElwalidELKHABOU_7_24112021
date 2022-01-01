@@ -9,5 +9,8 @@ import { MessagesService } from '../../services/messages.service';
 
 
 export class MessagesComponent {
+  
+  // Injection de Dépendance : Ajout au constructor de l'argument du type de service avec les modificateurs 
+  // d'access (public & private) afin de pouvoir accéder au service depuis les components.
   constructor(public messageService: MessagesService) { }
 }

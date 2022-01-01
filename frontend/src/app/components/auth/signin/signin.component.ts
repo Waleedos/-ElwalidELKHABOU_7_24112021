@@ -19,13 +19,16 @@ export class SigninComponent implements OnInit {
 
   public signInForm: FormGroup;
 
+
+  // Injection de Dépendance : Ajout au constructor de l'argument du type de service avec les modificateurs 
+  // d'access (private) afin de pouvoir accéder au service depuis les components.
   constructor(
     private authService: AuthService,
     private messagesService: MessagesService,
     private formBuilder: FormBuilder,
   ) { }
 
-  // Initialisation des propriétés déclarées
+  // Initialisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
     this.initForm();
   }

@@ -13,12 +13,15 @@ import { NotificationsService } from '../../services/notifications.service';
 // pour respecter les methodes utilisées.
 export class HeaderComponent implements OnInit {
 
+  
+  // Injection de Dépendance : Ajout au constructor de l'argument du type de service avec les modificateurs 
+  // d'access (public) afin de pouvoir accéder au service depuis les components.
   constructor(
     public authService: AuthService,
     public notificationsService: NotificationsService
   ) { }
 
-  // Initialisation des propriétés déclarées
+  // Initialisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
     this.authService.getCurrentUserInfo();
   }

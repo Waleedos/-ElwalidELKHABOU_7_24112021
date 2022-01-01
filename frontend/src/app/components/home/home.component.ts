@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit {
   private postsBatch = 2; // Nombre de post supplémentaires qui seront chargés lorsqu'on arrive en bas de page (infinite scroll)
 
 
+
+  // Injection de Dépendance : Ajout au constructor de l'argument du type de service avec les modificateurs 
+  // d'access (public & private) afin de pouvoir accéder au service depuis les components.
   constructor(
     private publicationsService: PublicationsService,
     public authService: AuthService,
@@ -34,8 +37,9 @@ export class HomeComponent implements OnInit {
     private likesService: LikesService,
     public imageService: ImageService
   ) { }
+  
 
-  // Initialisation des propriétés déclarées
+  // Initialisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
     this.getPostsFromStart(this.postsBatch);
   }

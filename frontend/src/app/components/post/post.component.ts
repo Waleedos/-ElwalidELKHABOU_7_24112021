@@ -24,6 +24,9 @@ export class PostComponent implements OnInit {
   private postId: number;
   public post: Post;
 
+
+  // Injection de Dépendance : Ajout au constructor de l'argument du type de service avec les modificateurs 
+  // d'access (public & private) afin de pouvoir accéder au service depuis les components.
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,7 +38,7 @@ export class PostComponent implements OnInit {
   ) { }
 
   
-  // Initialisation de la propriété déclarée
+  // Initialisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
     this.postId = +this.route.snapshot.paramMap.get('id');
     this.getPublication();

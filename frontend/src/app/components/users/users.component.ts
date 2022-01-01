@@ -21,13 +21,16 @@ export class UsersComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
 
+
+  // Injection de Dépendance : Ajout au constructor de l'argument du type de service avec les modificateurs 
+  // d'access (public & private) afin de pouvoir accéder au service depuis les components.
   constructor(
     public usersService: UsersService,
     private messagesService: MessagesService
   ) { }
 
   
-  // Initialisation de la propriété déclarée
+  // Initialisation et utilisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
     this.usersService.getAllUsers();
 

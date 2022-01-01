@@ -14,13 +14,16 @@ import { NotificationsService } from '../../services/notifications.service';
 // pour respecter les methodes utilisées.
 export class NotificationsComponent implements OnInit {
 
+  
+  // Injection de Dépendance : Ajout au constructor de l'argument du type de service avec les modificateurs 
+  // d'access (public & private) afin de pouvoir accéder au service depuis les components.
   constructor(
     public notificationsService: NotificationsService,
     private messagesService: MessagesService
   ) { }
 
   
-  // Initialisation de la propriété déclarée
+  // Initialisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
     this.notificationsService.getNotifications();
   }
