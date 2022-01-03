@@ -44,6 +44,11 @@ export class SigninComponent implements OnInit {
 
   private initForm(): void {
     this.signInForm = this.formBuilder.group({
+
+      // Initialisation du formulaire avec les 4 (Controles) qui seront présents dans 
+      // le formulaire et avec utilisation du validator (required) 
+      //qui va passer ces champs en "Valeur Requise", ainsi que le validator 
+      // des adresses e-mail et des pattern. 
       name: ['', [Validators.required, Validators.pattern(/[A-Za-zÀ-ÖØ-öø-ÿ ]{3,50}/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{8,}/)]],
@@ -70,6 +75,8 @@ export class SigninComponent implements OnInit {
     const email: string = this.signInForm.get('email').value;
     const password: string = this.signInForm.get('password').value;
     this.authService.createNewUser(name, email, password)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           // utilisateur créé, il faut maintenant se connecter !

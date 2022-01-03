@@ -48,6 +48,8 @@ export class HomeComponent implements OnInit {
   // Récupérer tous les posts depuis le début jusqu'au chargement actuel
   private getPostsFromStart(numberOfPosts: number): void {
     this.publicationsService.getPublications(numberOfPosts, 0)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 200) {
           this.posts = response.body.posts;
@@ -59,6 +61,8 @@ export class HomeComponent implements OnInit {
   // charger de nouveaux posts petit à petit
   private getOtherPosts(limit: number, offset: number): void {
     this.publicationsService.getPublications(limit, offset)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 200) {
           const oldPosts: Post[] = this.posts;
@@ -96,6 +100,8 @@ export class HomeComponent implements OnInit {
     formData.append('content', content);
 
     this.publicationsService.newPublication(formData)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           this.getPostsFromStart(this.posts.length);
@@ -119,6 +125,8 @@ export class HomeComponent implements OnInit {
   public onDeletePublication(event: Event): void {
     const postId: number = parseInt(event.target[0].value, 10);
     this.publicationsService.deletePublication(postId)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           this.getPostsFromStart(this.posts.length);
@@ -139,6 +147,8 @@ export class HomeComponent implements OnInit {
     const content: string = event.target[0].value;
     const postId: number = parseInt(event.target[1].value, 10);
     this.commentsService.newComment(postId, content)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           this.getPostsFromStart(this.posts.length);
@@ -156,6 +166,8 @@ export class HomeComponent implements OnInit {
   public onDeleteComment(event: Event): void {
     const commentId: number = parseInt(event.target[0].value, 10);
     this.commentsService.deleteComment(commentId)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           this.getPostsFromStart(this.posts.length);
@@ -174,6 +186,8 @@ export class HomeComponent implements OnInit {
     const postId: number = parseInt(event.target[0].value, 10);
     const rate: number = parseInt(event.target[1].value, 10);
     this.likesService.newRatePublication(postId, rate)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           this.getPostsFromStart(this.posts.length);

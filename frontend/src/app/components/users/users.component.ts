@@ -42,7 +42,8 @@ export class UsersComponent implements OnInit {
       // ignore new term if same as previous term
       distinctUntilChanged(),
       
-      // switch to new search observable each time the term changes
+      // switch to new search observable each time the term changes avec la souscription
+      // au service afin de pouvoir interagir avec la réponse du serveur
       switchMap((term: string) => this.usersService.searchUsers(term)),
     ).subscribe((response: HttpResponse) => {
       if (response.status === 200) {

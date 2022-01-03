@@ -11,6 +11,7 @@ const newUserSchema = Joi.object({
   email: Joi.string().trim().email().required(),
   password: Joi.string().trim().min(8).required()
 });
+
 exports.newUser = (req, res, next) => {
   const {error, value} = newUserSchema.validate(req.body);
   if (error) {

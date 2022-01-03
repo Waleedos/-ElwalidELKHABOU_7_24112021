@@ -37,9 +37,13 @@ export class LoginComponent implements OnInit {
   }
 
   // Initialisation du formulaire avec les deux (Controles) qui seront présents dans le formulaire
-  // et qui sont (E-mail) et (Mots de Passe).
+  // et qui sont (E-mail) et (Mots de Passe) avec utilisation du validator required qui va passer
+  // ce champs en "Valeur Requise".
   private initForm(): void {
     this.signInForm = this.formBuilder.group({
+
+      // utilisation du validator (required) qui va passer ces deux champs en "Valeur Requise" 
+      // ainsi que le validator des adresses e-mail et des pattern.
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{8,}/)]]
     });

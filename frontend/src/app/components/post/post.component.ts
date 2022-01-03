@@ -42,7 +42,7 @@ export class PostComponent implements OnInit {
   // Initialisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
 
-    // Utilisation du Type-Cast (+) pour transformer la chane de caractères qui contients des nombres
+    // Utilisation du Type-Cast (+) pour transformer la chaine de caractères qui contients des nombres
     // en (Number).
     this.postId = +this.route.snapshot.paramMap.get('id');
     this.getPublication();
@@ -62,7 +62,10 @@ export class PostComponent implements OnInit {
   /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/  
   public onDeletePublication(): void {
     this.publicationsService.deletePublication(this.postId)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.messagesService.add(`Publication supprimée`);
           this.router.navigate(['/home']);
@@ -77,7 +80,10 @@ export class PostComponent implements OnInit {
     const postId = this.postId;
     const rate: number = parseInt(event.target[1].value, 10);
     this.likesService.newRatePublication(postId, rate)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.getPublication();
         } else {
@@ -91,7 +97,10 @@ export class PostComponent implements OnInit {
     const content: string = event.target[0].value;
     const postId: number = parseInt(event.target[1].value, 10);
     this.commentsService.newComment(postId, content)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.getPublication();
         } else {
@@ -104,7 +113,10 @@ export class PostComponent implements OnInit {
   public onDeleteComment(event): void {
     const commentId: number = parseInt(event.target[0].value, 10);
     this.commentsService.deleteComment(commentId)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+        
         if (response.status === 201) {
           this.getPublication();
         } else {

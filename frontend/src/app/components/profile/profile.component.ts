@@ -61,7 +61,9 @@ export class ProfileComponent implements OnInit {
 
   
   // Initialisation du formulaire de changement du mots de pass avec les deux (Controles) 
-  // qui seront présents dans le formulaire et qui sont (l'ancien et le nouveau mots de Passe).
+  // qui seront présents dans le formulaire et qui sont (l'ancien et le nouveau mots de Passe)
+  // avec utilisation du validator required qui va passer ces champs en "Valeur Requise" et le
+  // validateur (pattern) des conditions requises pour les mots de pass.
   private initForm(): void {
     this.passwordChangeForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{8,}/)]],
@@ -74,11 +76,14 @@ export class ProfileComponent implements OnInit {
    */
   private getUser(): void {
 
-    // Utilisation du Type-Cast (+) pour transformer la chane de caractères qui contients des nombres
+    // Utilisation du Type-Cast (+) pour transformer la chaine de caractères qui contients des nombres
     // en (Number).
     const id = +this.route.snapshot.paramMap.get('id');
     this.usersService.getOneUser(id)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 200) {
           this.userDetails = response.body;
           this.getPostsOfUser();
@@ -97,7 +102,10 @@ export class ProfileComponent implements OnInit {
     if (event.target[0].value && event.target[0].value !== '') {
       const newOutline: string = event.target[0].value;
       this.usersService.updateOutline(this.userDetails.id, newOutline)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .      
         .subscribe((response: HttpResponse) => {
+
           if (response.status === 201) {
             this.getUser();
             event.target[0].value = '';
@@ -117,7 +125,10 @@ export class ProfileComponent implements OnInit {
     const { oldPassword, newPassword } = this.passwordChangeForm.value;
     if (newPassword && newPassword !== '' && oldPassword && oldPassword !== '') {
       this.usersService.updatePassword(this.userDetails.id, oldPassword, newPassword)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .      
         .subscribe((response: HttpResponse) => {
+
           if (response.status === 201) {
             this.passwordChangeForm.reset();
             this.messagesService.add(`Votre mot de passe a bien été modifié`);
@@ -140,7 +151,10 @@ export class ProfileComponent implements OnInit {
   /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/  
   public onDeleteConfirmed(): void {
     this.usersService.deleteUser(this.userDetails.id)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.messagesService.add(`Vous avez bien supprimé votre compte`);
           this.router.navigate(['/login']);
@@ -158,7 +172,10 @@ export class ProfileComponent implements OnInit {
   /*** Utilisation de la méthode de réaction "onChange" à cet evenement ***/ 
   public onChangeAdmin(isAdmin: number): void {
     this.usersService.updateAdminRights(this.userDetails.id, isAdmin)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status !== 201) {
           this.messagesService.add(`Erreur: ${response.error.error}`);
         }
@@ -180,7 +197,10 @@ export class ProfileComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('image', image);
     this.usersService.updatePicture(this.userDetails.id, uploadData)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.getUser();
           this.authService.getCurrentUserInfo();
@@ -199,7 +219,10 @@ export class ProfileComponent implements OnInit {
    */
   public getPostsOfUser(): void {
     this.usersService.getAllPublicationsOfUser(this.userDetails.id)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 200) {
           this.posts = response.body.posts;
         } else {
@@ -215,7 +238,10 @@ export class ProfileComponent implements OnInit {
   public onDeletePublication(event: Event): void {
     const postId: number = parseInt(event.target[0].value, 10);
     this.publicationsService.deletePublication(postId)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.getPostsOfUser();
           this.messagesService.add(`Publication supprimée`);
@@ -234,7 +260,10 @@ export class ProfileComponent implements OnInit {
     const content: string = event.target[0].value;
     const postId: number = parseInt(event.target[1].value, 10);
     this.commentsService.newComment(postId, content)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.getPostsOfUser();
         } else {
@@ -251,7 +280,10 @@ export class ProfileComponent implements OnInit {
   public onDeleteComment(event: Event): void {
     const commentId: number = parseInt(event.target[0].value, 10);
     this.commentsService.deleteComment(commentId)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+
         if (response.status === 201) {
           this.getPostsOfUser();
         } else {
@@ -269,7 +301,10 @@ export class ProfileComponent implements OnInit {
     const postId: number = parseInt(event.target[0].value, 10);
     const rate: number = parseInt(event.target[1].value, 10);
     this.likesService.newRatePublication(postId, rate)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
+        
         if (response.status === 201) {
           this.getPostsOfUser();
         } else {

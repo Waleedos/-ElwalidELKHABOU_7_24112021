@@ -55,7 +55,10 @@ export class AuthService {
       .pipe(catchError(err => {
         return of(err);
       }))
+
+      // Suscription pour pouvoir réagir à la réponse du serveur
       .subscribe((response: HttpResponse): void => {
+
         if (response.status === 200) {
           this.user = response.body;
           this.messagesService.add(`Bienvenue ${this.user.name} !`);
@@ -74,7 +77,10 @@ export class AuthService {
       .pipe(catchError(err => {
         return of(err);
       }))
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .
       .subscribe((response: HttpResponse): void => {
+
         if (response.status === 200) {
           this.user = undefined;
           this.log(`Vous êtes déconnecté`);
@@ -91,7 +97,10 @@ export class AuthService {
         this.log(`Veuillez vous identifier`);
         return of(err);
       }))
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .      
       .subscribe((response: HttpResponse) => {
+        
         if (response.status === 200) {
           this.user = response.body;
           this.notificationService.getNotifications();

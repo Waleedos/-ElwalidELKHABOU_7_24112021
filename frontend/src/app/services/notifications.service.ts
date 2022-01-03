@@ -48,7 +48,10 @@ export class NotificationsService {
         this.log(`Erreur: ${err.statusText}`);
         return of(err);
       }))
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .      
       .subscribe((response: HttpResponse) => {
+        
         if (response.status === 200) {
           this.notifications = response.body.notifications;
         } else {

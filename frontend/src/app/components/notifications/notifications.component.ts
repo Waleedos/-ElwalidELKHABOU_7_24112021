@@ -31,6 +31,8 @@ export class NotificationsComponent implements OnInit {
   /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/
   public onDeleteOne(id: number): void {
     this.notificationsService.deleteOneNotification(id)
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           this.notificationsService.getNotifications();
@@ -43,6 +45,8 @@ export class NotificationsComponent implements OnInit {
   /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/
   public onDeleteAll(): void {
     this.notificationsService.deleteAllNotifications()
+
+      // Suscription pour pouvoir réagir à la réponse du serveur .    
       .subscribe((response: HttpResponse) => {
         if (response.status === 201) {
           this.notificationsService.getNotifications();
