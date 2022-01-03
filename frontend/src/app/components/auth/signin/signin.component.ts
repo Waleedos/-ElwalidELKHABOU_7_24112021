@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+// Import de ce qui est necessaire pour la création de formulaire.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth.service';
@@ -17,6 +19,9 @@ import { HttpResponse } from '../../../interfaces/HttpResponse.interface';
 // pour respecter les methodes utilisées.
 export class SigninComponent implements OnInit {
 
+
+  // Création de l'objet formulaire (signInForm) de type (FormGroup) qui correspond à l'objet
+  // formulaire créé dans le Template.
   public signInForm: FormGroup;
 
 
@@ -25,9 +30,13 @@ export class SigninComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private messagesService: MessagesService,
+
+    // Injection de l'Outil (formBuilder) pour nous permettre de créer des formulaires 
+    // ou des objets de type (formGroup) plus facilement
     private formBuilder: FormBuilder,
   ) { }
 
+  
   // Initialisation de la propriété déclarée à partir du service.
   public ngOnInit(): void {
     this.initForm();

@@ -1,8 +1,9 @@
 // Déclaration de la Class comme étant un service avec le décorateur { Injectable }. 
 import { Injectable } from '@angular/core';
 
-
+// Import de "Observable" pour pouvoir l'utiliser.
 import { Observable, of } from 'rxjs';
+
 import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 

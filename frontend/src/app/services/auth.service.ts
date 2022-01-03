@@ -1,8 +1,9 @@
 // Déclaration de la Class comme étant un service avec le décorateur { Injectable }. 
 import { Injectable } from '@angular/core';
 
-
+// Import de "Observable" pour pouvoir l'utiliser.
 import { Observable, of } from 'rxjs';
+
 import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -58,6 +59,8 @@ export class AuthService {
         if (response.status === 200) {
           this.user = response.body;
           this.messagesService.add(`Bienvenue ${this.user.name} !`);
+
+          // Implementation de la route "home" dans la landing page suivant la condition de la directive
           this.router.navigate(['/home']);
           this.notificationService.getNotifications();
         } else {

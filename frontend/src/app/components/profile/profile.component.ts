@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+// Import de ce qui est necessaire pour la création de formulaire.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UsersService } from '../../services/users.service';
@@ -37,6 +39,9 @@ export class ProfileComponent implements OnInit {
     private usersService: UsersService,
     public authService: AuthService,
     private router: Router,
+
+    // Injection de l'Outil (formBuilder) pour nous permettre de créer des formulaires 
+    // ou des objets de type (formGroup) plus facilement
     private formBuilder: FormBuilder,
     private messagesService: MessagesService,
     public imageService: ImageService,
@@ -55,7 +60,8 @@ export class ProfileComponent implements OnInit {
   }
 
   
-  // Initialisation des formulaires
+  // Initialisation du formulaire de changement du mots de pass avec les deux (Controles) 
+  // qui seront présents dans le formulaire et qui sont (l'ancien et le nouveau mots de Passe).
   private initForm(): void {
     this.passwordChangeForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{8,}/)]],
@@ -67,6 +73,9 @@ export class ProfileComponent implements OnInit {
    * Récupération des informations de l'utilisateur affiché
    */
   private getUser(): void {
+
+    // Utilisation du Type-Cast (+) pour transformer la chane de caractères qui contients des nombres
+    // en (Number).
     const id = +this.route.snapshot.paramMap.get('id');
     this.usersService.getOneUser(id)
       .subscribe((response: HttpResponse) => {

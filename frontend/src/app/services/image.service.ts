@@ -34,15 +34,19 @@ export class ImageService {
     this.imageChangedEvent = event;
     this.initialImage = event.target.files[0];
   }
+
   public imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.base64;
   }
+
   public imageLoaded(): void {
     document.getElementById('cropper').classList.remove('hidden');
   }
+
   public loadImageFailed(): void {
     this.messagesService.add(`Erreur lors du chargement de l'image`);
   }
+
   // Transformation de l'image base64 (donnée par "ngx-image-cropper") en fichier exploitable
   public base64ToFile(dataurl: string, filename: string): File {
     const arr = dataurl.split(',');
@@ -55,6 +59,7 @@ export class ImageService {
     }
     return new File([u8arr], filename, {type: mime});
   }
+  
   public onCroppedImageDone(): void {
     document.getElementById('cropper').classList.add('hidden');
   }

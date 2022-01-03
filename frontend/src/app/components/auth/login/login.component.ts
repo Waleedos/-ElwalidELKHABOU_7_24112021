@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+// Import de ce qui est necessaire pour la création de formulaire.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth.service';
@@ -13,6 +15,8 @@ import { AuthService } from '../../../services/auth.service';
 // pour respecter les methodes utilisées.
 export class LoginComponent implements OnInit {
 
+  // Création de l'objet formulaire (signInForm) de type (FormGroup) qui correspond à l'objet
+  // formulaire créé dans le Template.
   public signInForm: FormGroup;
 
   
@@ -20,6 +24,9 @@ export class LoginComponent implements OnInit {
   // d'access (private) afin de pouvoir accéder au service depuis les components.
   constructor(
     private authService: AuthService,
+
+    // Injection de l'Outil (formBuilder) pour nous permettre de créer des formulaires 
+    // ou des objets de type (formGroup) plus facilement
     private formBuilder: FormBuilder,
   ) { }
   
@@ -29,6 +36,8 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
+  // Initialisation du formulaire avec les deux (Controles) qui seront présents dans le formulaire
+  // et qui sont (E-mail) et (Mots de Passe).
   private initForm(): void {
     this.signInForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

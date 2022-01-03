@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+// Pour l'utilisation de la Methode réactive lors de la création du formulaire 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- for NgModel
+
+
 import { HttpClientModule } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -34,16 +38,22 @@ import { FooterComponent } from './components/footer/footer.component';
     PostComponent,
     FooterComponent
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
+
+    // Pour la création réactive de formulaire
     ReactiveFormsModule,
+    
     HttpClientModule,
     AppRoutingModule,
     ImageCropperModule,
     InfiniteScrollModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

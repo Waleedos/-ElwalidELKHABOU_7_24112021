@@ -1,17 +1,29 @@
 <main class="main-wrapper">
   <div class="login">
+
+    <!--Pour la préparation du formulaire d'identification et la Liaison 
+    à l'attribut créé (formGroup) qui corresponf à ce formulaire qui est l'objet "signInForm"
+    avec l'ecoute de l'evenement (ngSubmit)-->
     <form class="login--form" [formGroup]='signInForm' (ngSubmit)="onSubmit()">
+
       <h1>Identifiez-vous</h1>
+
+      <!-- Mise en page des controles inserés dans le formulaire avec leurs liaisons 
+      avec leurs champs y afferants avec la directive "formControlName" --> 
       <fieldset>
         <label for="email">Email</label>
         <input id="email" type="email" formControlName="email">
       </fieldset>
+
       <fieldset>
         <label for="password">Mot de passe</label>
         <input id="password" type="password" formControlName="password">
       </fieldset>
+
+      <!-- Désactivation du bouton au cas ou les conditions requises ne sont pas remplies. -->
       <button class="btn" type="submit" [disabled]="signInForm.invalid">Se connecter</button>
     </form>
+    
     <p>Pas encore inscrit ? <a routerLink="/signin">Créer un compte</a></p>
   </div>
 </main>

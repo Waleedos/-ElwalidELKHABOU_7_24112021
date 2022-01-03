@@ -54,13 +54,26 @@
       <div>
         <!--  ################### MOT DE PASSE ################### -->
         <h2>Changer de mot de passe</h2>
+
+
+        <!--Pour la préparation du formulaire d'identification et la Liaison 
+        à l'attribut créé (formGroup) qui corresponf à ce formulaire qui est l'objet "signInForm"
+        avec l'ecoute de l'evenement (ngSubmit)-->
         <form  [formGroup]='passwordChangeForm' (ngSubmit)="onChangePassword()">
+
+
+          <!-- Mise en page des controles inserés dans le formulaire avec leurs liaisons 
+          avec leurs champs y afferants avec la directive "formControlName" --> 
+          
           <label for="oldPassword">Mot de passe actuel
             <input type="password" id="oldPassword" formControlName="oldPassword">
           </label>
+
           <label for="newPassword">Nouveau mot de passe
             <input type="password" id="newPassword" formControlName="newPassword">
           </label>
+
+          <!-- Désactivation du bouton au cas ou les conditions requises ne sont pas remplies. -->
           <button type="submit" class="btn"  [disabled]="passwordChangeForm.invalid">Enregistrer</button>
         </form>
       </div>

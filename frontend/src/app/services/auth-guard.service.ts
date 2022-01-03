@@ -2,8 +2,14 @@
 import { Injectable } from '@angular/core';
 
 import { catchError, map } from 'rxjs/operators';
+
+// Importation de (CanActivate) afin de l'utiliser pour proteger Nos Routes 
 import { CanActivate, Router } from '@angular/router';
+
+// Import de "Observable" pour pouvoir l'utiliser.
 import { Observable, of } from 'rxjs';
+
+
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
@@ -38,6 +44,8 @@ export class AuthGuardService implements CanActivate {
     return this.httpClient.get(`${this.backendServer}/api/user/isauth`, { withCredentials: true })
       .pipe(
         catchError(err => {
+
+          // Implementation de la route "login" dans la landing page
           this.router.navigate(['/login']);
           this.authService.user = undefined;
           return of(false);
