@@ -39,8 +39,8 @@ export class AuthGuardService implements CanActivate {
     private authService: AuthService
     ) { }
 
-    
-  public canActivate(): Observable<boolean>|Promise<boolean>|boolean {
+  // Déclaration de la fonction (CanActivate) qui va retourner un bouléan   
+  public canActivate(): Observable<boolean>|boolean {
     return this.httpClient.get(`${this.backendServer}/api/user/isauth`, { withCredentials: true })
       .pipe(
         catchError(err => {

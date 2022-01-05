@@ -1,6 +1,6 @@
 <main class="main-wrapper">
   <section class="profile">
-    <h1>{{userDetails.name}}</h1>
+    <h1>{{userDetails?.name}}</h1>
     <hr>
     <div class="profile--top">
       <div class="profile--image">
@@ -8,10 +8,10 @@
         <h2>Photo de profil</h2>
 
         <!-- Liaison des valeurs des propriétés par attributs HTML -->
-        <img [src]="userDetails.pictureurl === null ? './assets/anonymousUser.svg' : userDetails.pictureurl" alt="Photo de profil de {{userDetails.name}}">
+        <img [src]="userDetails?.pictureurl === null ? './assets/anonymousUser.svg' : userDetails?.pictureurl" alt="Photo de profil de {{userDetails?.name}}">
         
         <!-- Utilisation de la directive condition "*ngIf" pour permettre ou non à l'utilisateur de changer sa photo de profil -->         
-        <form *ngIf="userDetails.id === authService.user.userId">
+        <form *ngIf="userDetails?.id === authService.user.userId">
           <label for="picture" class="btn label-file" aria-label="Changer sa photo de profil">Changer ma photo de profil</label>
           <input 
             type="file"
@@ -24,11 +24,11 @@
       <div class="profile--description">
         <!--  ################### EMAIL ################### -->
         <h2>E-mail</h2>
-        <p class="profile--email">{{userDetails.email}}</p>
+        <p class="profile--email">{{userDetails?.email}}</p>
         <!--  ################### DESCRIPTION ################### -->
         <h2 class="mt">Description</h2>
-        <p>{{userDetails.outline === null ? 'Pas de description' : userDetails.outline}}</p>
-        <form (submit)="onUpdateOutline($event)" *ngIf="userDetails.id === authService.user.userId">
+        <p>{{userDetails?.outline === null ? 'Pas de description' : userDetails?.outline}}</p>
+        <form (submit)="onUpdateOutline($event)" *ngIf="userDetails?.id === authService.user.userId">
           <label for="update-description" class="hidden">Description</label>
           <textarea id="update-description" name="outline" placeholder="Votre nouvelle description"></textarea>
           <button type="submit" class="btn description-btn">
@@ -38,19 +38,19 @@
         <div *ngIf="authService.user.isAdmin === 1">
           <!--  ################### DROITS d'ADMIN ################### -->
           <h2 class="mt">Droits d'administration</h2>
-          <p *ngIf="this.userDetails.isadmin === 1">{{userDetails.name}} est admin</p>
-          <p *ngIf="this.userDetails.isadmin === 0">{{userDetails.name}} n'est pas admin</p>
+          <p *ngIf="this.userDetails?.isadmin === 1">{{userDetails?.name}} est admin</p>
+          <p *ngIf="this.userDetails?.isadmin === 0">{{userDetails?.name}} n'est pas admin</p>
 
           <!-- Relier la methode "onChangeAdmin" à l'evenement du click sur le bouton "Donner Droits Admin" -->           
-          <button class="btn btn-admin" (click)="onChangeAdmin(1)" *ngIf="this.userDetails.isadmin === 0">Donner les droits d'admin</button>
+          <button class="btn btn-admin" (click)="onChangeAdmin(1)" *ngIf="this.userDetails?.isadmin === 0">Donner les droits d'admin</button>
           
           <!-- Relier la methode "onChangeAdmin" à l'evenement du click sur le bouton "Retirer Droits Admin" -->          
-          <button class="btn btn-admin btn-admin__danger" (click)="onChangeAdmin(0)" *ngIf="this.userDetails.isadmin === 1">Retirer les droits d'admin</button>
+          <button class="btn btn-admin btn-admin__danger" (click)="onChangeAdmin(0)" *ngIf="this.userDetails?.isadmin === 1">Retirer les droits d'admin</button>
         </div>
       </div>
     </div>
-    <hr *ngIf="userDetails.id === authService.user.userId">
-    <div class="profile--bottom" *ngIf="userDetails.id === authService.user.userId">
+    <hr *ngIf="userDetails?.id === authService.user.userId">
+    <div class="profile--bottom" *ngIf="userDetails?.id === authService.user.userId">
       <div>
         <!--  ################### MOT DE PASSE ################### -->
         <h2>Changer de mot de passe</h2>
@@ -228,7 +228,7 @@
           <form class="comments--add" (submit)="onAddComment($event)">
 
             <!-- Liaison des valeurs des propriétés par attributs HTML -->
-            <img [src]="authService.user.pictureUrl===null ? './assets/anonymousUser.svg' : authService.user.pictureUrl" alt="Votre photo de profil">
+            <img [src]="authService.user?.pictureurl===null ? './assets/anonymousUser.svg' : authService.user?.pictureurl" alt="Votre photo de profil">
             <label [for]="'add-comment-' + post.postId" class="hidden">Votre commentaire</label>
             <input [id]="'add-comment-' + post.postId" type="text" placeholder="Votre commentaire">
             <input type="hidden" name="postId" [value]="post.postId">
