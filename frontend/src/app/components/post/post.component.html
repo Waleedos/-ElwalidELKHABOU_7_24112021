@@ -1,25 +1,25 @@
 <main class="main-wrapper">
-  <h1>Publication de {{post.userName}}</h1>
+  <h1>Publication de {{post?.userName}}</h1>
   <article>
     <!-- Header Publication : photo de profil, nom, date, et delete -->
     <header>
       <div>
-        <a routerLink="/profile/{{post.userId}}">
+        <a routerLink="/profile/{{post?.userId}}">
           
           <!-- Liaison des valeurs des propriétés par attributs HTML -->
           <img
-            [src]="post.userPicture===null ? './assets/anonymousUser.svg' : post.userPicture"
-            alt="Photo de profil de {{post.userName}}">
+            [src]="post?.userPicture===null ? './assets/anonymousUser.svg' : post.userPicture"
+            alt="Photo de profil de {{post?.userName}}">
         </a>
       </div>
       <div class="text">
         <p class="name">
-          <a routerLink="/profile/{{post.userId}}">{{post.userName}}</a>
+          <a routerLink="/profile/{{post?.userId}}">{{post?.userName}}</a>
         </p>
 
         <p class="date">
           <!-- Utilisation du Pipe "| date" pour le formatage de l'affichage des données dates -->        
-          Publié le {{post.postDate | date: "dd/MM/y à HH:mm" : "UTC+2"}}
+          Publié le {{post?.postDate | date: "dd/MM/y à HH:mm" : "UTC+2"}}
         </p>
 
       </div>
@@ -28,9 +28,9 @@
       de supprimer son post -->       
       <form
         class="delete-post"
-        *ngIf="post.userId === authService.user.userId || authService.user.isAdmin === 1"
+        *ngIf="post?.userId === authService.user.userId || authService.user.isAdmin === 1"
         (submit)="onDeletePublication()">
-        <input type="hidden" name="PostId" [value]="post.postId">
+        <input type="hidden" name="PostId" [value]="post?.postId">
         <button type="submit" aria-label="Supprimer la publication"><i class="fas fa-trash"></i></button>
       </form>
     </header>
@@ -38,12 +38,12 @@
     
     <!-- Main Publication : Photo et/ou contenu -->
     <main>
-      <div *ngIf="post.postImage !== null" class="picture">
+      <div *ngIf="post?.postImage !== null" class="picture">
 
         <!-- Liaison des valeurs des propriétés par attributs HTML -->        
         <img [src]="post.postImage" alt="Photo de la publication">
       </div>
-      <div *ngIf="post.postContent !== null" class="content">
+      <div *ngIf="post?.postContent !== null" class="content">
         <p>{{post.postContent}}</p>
       </div>
     </main>
@@ -53,27 +53,27 @@
 
         <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->
         <form (submit)="onlike($event)">
-          <input type="hidden" name="postId" [value]="post.postId">
-          <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === 1 ? 0 : 1">
+          <input type="hidden" name="postId" [value]="post?.postId">
+          <input type="hidden" name="rate" [value]="post?.likes.currentUserReaction === 1 ? 0 : 1">
 
           <!-- Utilisation de la directive *ngClass" pour la classe (post.likes.currentUserReaction) afin de nous permettre de changer 
           la couleur des "Likes" dans le fichier .scss si la condition "alreadyLiked" est remplie. -->                    
-          <button type="submit" [ngClass]="post.likes.currentUserReaction === 1 ? 'alreadyLiked' : ''" aria-label="like la publication">
+          <button type="submit" [ngClass]="post?.likes.currentUserReaction === 1 ? 'alreadyLiked' : ''" aria-label="like la publication">
             <i class="fas fa-thumbs-up"></i>
-            {{post.likes.LikesNumber}}
+            {{post?.likes.LikesNumber}}
           </button>
         </form>
 
         <!-- Utilisation de la méthode de réaction "onlike" à cet evenement -->
         <form (submit)="onlike($event)">
-          <input type="hidden" name="postId" [value]="post.postId">
-          <input type="hidden" name="rate" [value]="post.likes.currentUserReaction === -1 ? 0 : -1">
+          <input type="hidden" name="postId" [value]="post?.postId">
+          <input type="hidden" name="rate" [value]="post?.likes.currentUserReaction === -1 ? 0 : -1">
 
           <!-- Utilisation de la directive *ngClass" pour la classe (post.likes.currentUserReaction) afin de nous permettre de changer 
           la couleur des "Likes" dans le fichier .scss si la condition "alreadyDisliked" est remplie. -->          
-          <button type="submit" [ngClass]="post.likes.currentUserReaction === -1 ? 'alreadyDisliked' : ''" aria-label="dislike la publication">
+          <button type="submit" [ngClass]="post?.likes.currentUserReaction === -1 ? 'alreadyDisliked' : ''" aria-label="dislike la publication">
             <i class="fas fa-thumbs-down"></i>
-            {{post.likes.DislikesNumber}}
+            {{post?.likes.DislikesNumber}}
           </button>
         </form>
       </div>
@@ -82,7 +82,7 @@
 
         <!-- Utilisation de la directive *ngFor" pour afficher un tableau au lieu d'une variable par
         element, c.a.d on insere une instance de ce component et associe sa propriété à un element du tableau -->        
-        <div *ngFor="let comment of post.comments" class="comments--comment">
+        <div *ngFor="let comment of post?.comments" class="comments--comment">
           <div>
             
             <!-- Liaison des valeurs des propriétés par attributs HTML -->
@@ -118,7 +118,7 @@
           <img [src]="authService.user.pictureUrl===null ? './assets/anonymousUser.svg' : authService.user.pictureUrl" alt="Votre photo de profil">
           <label for="ajout-commentaire" class="hidden">votre commentaire</label>
           <input id="ajout-commentaire" type="text" placeholder="Votre commentaire">
-          <input type="hidden" name="postId" [value]="post.postId">
+          <input type="hidden" name="postId" [value]="post?.postId">
           <button type="submit" aria-label="Envoyer"><i class="fas fa-plus-circle"></i></button>
         </form>
       </div>

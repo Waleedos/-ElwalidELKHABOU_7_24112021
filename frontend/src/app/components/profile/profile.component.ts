@@ -145,7 +145,7 @@ export class ProfileComponent implements OnInit {
    * - Click pour confirmer la suppressions
    */
   public onDeleteClicked(): void {
-    document.getElementById('delete-confirm')?.classList.toggle('profile--delete-confirm__hidden');
+    document.getElementById('delete-confirm').classList.toggle('profile--delete-confirm__hidden');
   }
   
   /*** Utilisation de la méthode de réaction "onDelete" à cet evenement ***/  
@@ -207,7 +207,7 @@ export class ProfileComponent implements OnInit {
         } else {
           this.messagesService.add(`Une erreur s'est produite`);
         }
-        document.getElementById('cropper')?.classList.add('hidden');
+        document.getElementById('cropper').classList.add('hidden');
         this.imageService.initialImage = '';
         this.imageService.imageChangedEvent = '';
         this.imageService.croppedImage = '';

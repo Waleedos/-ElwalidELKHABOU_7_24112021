@@ -25,6 +25,7 @@
         <!--  ################### EMAIL ################### -->
         <h2>E-mail</h2>
         <p class="profile--email">{{userDetails?.email}}</p>
+
         <!--  ################### DESCRIPTION ################### -->
         <h2 class="mt">Description</h2>
         <p>{{userDetails?.outline === null ? 'Pas de description' : userDetails?.outline}}</p>
@@ -36,6 +37,7 @@
           </button>
         </form>
         <div *ngIf="authService.user.isAdmin === 1">
+
           <!--  ################### DROITS d'ADMIN ################### -->
           <h2 class="mt">Droits d'administration</h2>
           <p *ngIf="this.userDetails?.isadmin === 1">{{userDetails?.name}} est admin</p>
