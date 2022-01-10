@@ -40,7 +40,7 @@
 
           <!--  ################### DROITS d'ADMIN ################### -->
           <h2 class="mt">Droits d'administration</h2>
-          <p *ngIf="this.userDetails?.isadmin === 1">{{userDetails?.name}} est admin</p>
+          <h4 *ngIf="this.userDetails?.isadmin === 1">{{userDetails?.name}} est admin</h4>
           <p *ngIf="this.userDetails?.isadmin === 0">{{userDetails?.name}} n'est pas admin</p>
 
           <!-- Relier la methode "onChangeAdmin" à l'evenement du click sur le bouton "Donner Droits Admin" -->           
