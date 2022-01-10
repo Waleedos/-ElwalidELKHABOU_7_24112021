@@ -79,10 +79,10 @@ exports.getLikesOfEachPosts = (posts, userId, connection) => {
 }
 
 
-
 // Récupération de tous les posts, avec commentaires et likes/dislikes
 exports.getAllPosts = (req, res, next) => {
   const connection = database.connect();
+
   // 1: récupération de tous les posts
   const sql = "SELECT Posts.id AS postId, Posts.publication_date AS postDate, Posts.imageurl AS postImage, Posts.content as postContent, Users.id AS userId, Users.name AS userName, Users.pictureurl AS userPicture\
   FROM Posts\
@@ -93,9 +93,11 @@ exports.getAllPosts = (req, res, next) => {
       connection.end();
       res.status(500).json({ "error": error.sqlMessage });
     } else {
+
       // 2: Pour chaque post, on va chercher tous les commentaires du post
       this.getCommentsOfEachPosts(rawPosts, connection)
         .then(postsWithoutLikes => {
+
           // 3: Pour chaque post, on rajoute les likes/dislikes
           const cryptedCookie = new Cookies(req, res).get('snToken');
           const userId = JSON.parse(cryptojs.AES.decrypt(cryptedCookie, process.env.COOKIE_KEY).toString(cryptojs.enc.Utf8)).userId;
@@ -114,11 +116,10 @@ exports.getAllPosts = (req, res, next) => {
   });
 }
 
-
-
-/************** Récupération de plusieurs posts (avec limit et offset) **************/
+/************** Récupération de plusieurs posts **************/
 exports.getSomePosts = (req, res, next) => {
   const connection = database.connect();
+
   // 1: récupération des posts recherchés
   const limit = parseInt(req.params.limit);
   const offset = parseInt(req.params.offset);
@@ -133,9 +134,11 @@ exports.getSomePosts = (req, res, next) => {
       connection.end();
       res.status(500).json({ "error": error.sqlMessage });
     } else {
+
       // 2: Pour chaque post, on va chercher tous les commentaires du post
       this.getCommentsOfEachPosts(rawPosts, connection)
         .then(postsWithoutLikes => {
+          
           // 3: Pour chaque post, on rajoute les likes/dislikes
           const cryptedCookie = new Cookies(req, res).get('snToken');
           const userId = JSON.parse(cryptojs.AES.decrypt(cryptedCookie, process.env.COOKIE_KEY).toString(cryptojs.enc.Utf8)).userId;
@@ -150,6 +153,7 @@ exports.getSomePosts = (req, res, next) => {
 
 exports.getOnePost = (req, res, next) => {
   const connection = database.connect();
+  
   // 1: récupération des posts recherchés
   const postId = parseInt(req.params.id);
   const sql = "SELECT Posts.id AS postId, Posts.publication_date AS postDate, Posts.imageurl AS postImage, Posts.content as postContent, Users.id AS userId, Users.name AS userName, Users.pictureurl AS userPicture\
@@ -163,9 +167,11 @@ exports.getOnePost = (req, res, next) => {
       connection.end();
       res.status(500).json({ "error": error.sqlMessage });
     } else {
+
       // 2: on va chercher tous les commentaires du post
       this.getCommentsOfEachPosts(rawPosts, connection)
         .then(postsWithoutLikes => {
+
           // 3: Pour chaque post, on rajoute les likes/dislikes
           const cryptedCookie = new Cookies(req, res).get('snToken');
           const userId = JSON.parse(cryptojs.AES.decrypt(cryptedCookie, process.env.COOKIE_KEY).toString(cryptojs.enc.Utf8)).userId;
@@ -178,11 +184,7 @@ exports.getOnePost = (req, res, next) => {
   });
 }
 
-
-
-
-
-/**************************************** Suppression d'un post ****************************************/
+/************************ Suppression d'un post ***************************/
 exports.deletePost = (req, res, next) => {
   const connection = database.connect();
   const postId = parseInt(req.params.id, 10);

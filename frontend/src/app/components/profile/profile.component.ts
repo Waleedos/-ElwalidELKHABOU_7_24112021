@@ -99,8 +99,9 @@ export class ProfileComponent implements OnInit {
 
   /*** Utilisation de la méthode de réaction "onUpdate" à cet evenement ***/ 
   public onUpdateOutline(event: Event): void {
-    if (event.target[0].value && event.target[0].value !== '') {
+    if (event.target[0] && event.target[0].value !== '') {
       const newOutline: string = event.target[0].value;
+      console.log (newOutline);
       this.usersService.updateOutline(this.userDetails.id, newOutline)
 
       // Suscription pour pouvoir réagir à la réponse du serveur .      

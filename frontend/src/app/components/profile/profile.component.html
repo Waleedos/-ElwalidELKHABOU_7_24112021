@@ -29,7 +29,7 @@
         <!--  ################### DESCRIPTION ################### -->
         <h2 class="mt">Description</h2>
         <p>{{userDetails?.outline === null ? 'Pas de description' : userDetails?.outline}}</p>
-        <form (submit)="onUpdateOutline($event)" *ngIf="userDetails?.id === authService.user.userId">
+        <form (submit)="onUpdateOutline($event)" *ngIf="userDetails?.id === authService?.user.userId">
           <label for="update-description" class="hidden">Description</label>
           <textarea id="update-description" name="outline" placeholder="Votre nouvelle description"></textarea>
           <button type="submit" class="btn description-btn">

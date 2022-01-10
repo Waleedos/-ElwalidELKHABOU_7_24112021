@@ -37,10 +37,12 @@ exports.rate = (req, res, next) => {
           notification.addReaction(userId, postId) 
 
 
-            // ajout de la notification (= 3ème requête..)
+            // renvois d’un réponse. res.status() avec le status 201
             .then(data => {
               res.status(201).json({ message: 'Like ou dislike pris en compte' });
             })
+
+            // renvois d’un réponse. res.status() avec le status d'erreur 500            
             .catch(err => {
               res.status(500).json({ "error": err });
             })

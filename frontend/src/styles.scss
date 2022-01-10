@@ -12,9 +12,10 @@ html {
 }
 body {
   margin: 0;
-  // background: $color-back-background;
+  background: $color-back-background;
   background: linear-gradient(rgba(187, 187, 187, 0.253), rgba(187, 187, 187, 0.253)),
-              no-repeat top /100% fixed url("./assets/3b2j.jpg");
+              no-repeat center /100% fixed url("./assets/3b2j.jpg");
+         
   color: $color-main-text;
   font-family: $font-body;
 }
