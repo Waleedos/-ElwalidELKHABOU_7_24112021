@@ -37,7 +37,7 @@
 ## Organisation de travail
 - AGILE
 - Une première version basique (MVP) sera présentée au client
-- Le développement se fera "au fil de l'eau" selon les requêtes du client
+- Le développement se fera au fil de l'eau selon les requêtes du client
 - L'objectif de ce projet est de créer ce premier MVP
 
 ## Versionning
@@ -50,39 +50,27 @@
 ```
 -----------------------------------------------------------------------------
 
-# Technologies Utilisees :
-
+# Démarrage de l'application :
    ## BackEnd
-    • NODE          : Version 16.13.1
-    • express       : Version 4.17.2
-    • bcrypt        : Version 5.0.1
-    • body-parser   : Version 1.19.1
-    • cors          : Version 2.8.5 
-    • dotenv        : Version 8.6.0
-    • helmet        : Version 4.6.0
-    • jsonwebtoken  : Version 8.5.1
-    • multer        : Version 1.4.4
-    • mysql         : Version 2.18.1
-    • mysql2        : Version 2.3.3
-    • crypto-js     : Version 4.1.1
-    • joi           : Version 17.5.0
-    • morgan        : Version 1.10.0
-    • cookies       : Version 0.8.0
+    • Installez nodemon. Exécutez npm install, Toujours dans le répertoire « backend »
+    • Bien Evidement, apres avoir créer botre BDD en suivant la doc existante dans le repertoire /Docs_&Database/Database
+      Il faut créer un dossier caché .env dont voici mon exemple :
+       -----------------------------------------------------
+        DB_HOST='localhost'
+        DB_BASENAME='groupomania_walid'
+        DB_USER='walid'
+        DB_PASSWORD='baSE8533@)@+)+'
+        CRYPT_USER_INFO='mot_de_passe_secret_pour_cryptoJS'
+        JWT_KEY='FC895214DR5214HTFEDS5G8V7VFRDXWA596447HYG'
+        COOKIE_KEY='encore_un_mdp_pour_le_cookie' 
+       -----------------------------------------------------
+    • Exécutez "node server". 
+    • Le serveur doit fonctionner sur http://localhost:3000.  
 
-   ## FrontEnd
-    • NODE          : Version 16.13.1
-    • express       : Version 4.17.2
-    • bcrypt        : Version 5.0.1
-    • body-parser   : Version 1.19.1
-    • cors          : Version 2.8.5 
-    • dotenv        : Version 8.6.0
-    • helmet        : Version 4.6.0
-    • jsonwebtoken  : Version 8.5.1
-    • multer        : Version 1.4.4
-    • mysql         : Version 2.18.1
-    • mysql2        : Version 2.3.3
-    • crypto-js     : Version 4.1.1
-    • joi           : Version 17.5.0
-    • morgan        : Version 1.10.0
-    • cookies       : Version 0.8.0
+    La création de votre premier Utilisateur le considerera comme Admin
 
+   ## FrontEnd 
+    • Dans le dossier « frontend », exécutez npm install 
+    • Puis, Tjrs dans le dossier frontendn executez la commande "ng serve" Cela devrait à la fois exécuter le serveur local et lancer votre navigateur directement sur le port 4200. -- http://localhost:4200.     
+
+-----------------------------------------------------------------------------    
