@@ -53,7 +53,7 @@
 # Démarrage de l'application :
    ## BackEnd
     • Installez nodemon. Exécutez npm install, Toujours dans le répertoire « backend »
-    • Bien Evidement, apres avoir créer botre BDD en suivant la doc existante dans le repertoire /Docs_&Database/Database
+    • Bien Evidement, apres avoir créer votre BDD en suivant la doc existante dans le repertoire /Docs_&_Database/Database
       Il faut créer un dossier caché .env dont voici mon exemple :
        -----------------------------------------------------
         DB_HOST='localhost'
@@ -67,10 +67,10 @@
     • Exécutez "node server". 
     • Le serveur doit fonctionner sur http://localhost:3000.  
 
-    La création de votre premier Utilisateur le considerera comme Admin
-
    ## FrontEnd 
     • Dans le dossier « frontend », exécutez npm install 
     • Puis, Tjrs dans le dossier frontendn executez la commande "ng serve" Cela devrait à la fois exécuter le serveur local et lancer votre navigateur directement sur le port 4200. -- http://localhost:4200.     
+
+    NB : La création de votre premier Utilisateur le considerera comme Admin
 
 -----------------------------------------------------------------------------    
