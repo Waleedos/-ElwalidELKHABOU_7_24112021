@@ -1,7 +1,6 @@
 const multer = require('multer');
 
 
-
 // Déclaration d'une constante pour générer une extension de fichier (jpg ou png)
 const MIME_TYPES = {
   'image/jpg': 'jpg',
@@ -31,7 +30,7 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, callback) => {
 
-  // Accept images only
+  // Accept images only (format)
   if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
     return callback(new Error('Seulement les fichiers images sont autorisés!'), false);
   }

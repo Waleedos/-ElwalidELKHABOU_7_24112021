@@ -18,6 +18,7 @@ exports.sameUser = (req, res, next) => {
   }
 }
 
+
 /**
  * Vérifie que l'utilisateur a bien les droits administrateur
  */
@@ -40,6 +41,7 @@ exports.isAdmin = (req, res, next) => {
     }
   });
 }
+
 
 /**
  * Vérifier les autorisations pour la suppression d'un post
@@ -85,6 +87,7 @@ exports.deletePost = (req, res, next) => {
     }
   });
 }
+
 
 /**
  * Vérifier les autorisations pour la suppression d'un commentaire

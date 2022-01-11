@@ -35,7 +35,7 @@ exports.login = (req, res, next) => {
   }
 };
 
-// Vérification d'un id
+// Vérification d'un Id
 const idSchema = Joi.number().integer().positive().required();
 exports.id = (req, res, next) => {
   const {error, value} = idSchema.validate(req.params.id);

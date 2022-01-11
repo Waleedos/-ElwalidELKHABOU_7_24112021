@@ -4,6 +4,7 @@ const cryptojs = require('crypto-js');
 const database = require('../utils/database');
 
 
+// Récupération des notifications
 exports.getNotifs = (req, res, next) => {
   const connection = database.connect();
   const cryptedCookie = new Cookies(req, res).get('snToken');
@@ -27,6 +28,8 @@ exports.getNotifs = (req, res, next) => {
   connection.end();
 }
 
+
+// Suppression de toutes les notifications
 exports.deleteAllNotifs = (req, res, next) => {
   const connection = database.connect();
 
@@ -45,6 +48,7 @@ exports.deleteAllNotifs = (req, res, next) => {
   connection.end();
 }
 
+// Suppression d'une seule notification
 exports.deleteOneNotif = (req, res, next) => {
   const connection = database.connect();
   const notificationId = req.params.id;

@@ -48,18 +48,9 @@ Maintenant que tout est bien, nous allons nous rendre dans le fichier package.js
 
 Bien evidement, il ne faut pas oublier de sauvegarder le tout.
 
-### Création du fichier app.js
-
-
-
-
-backend $   npm install express 
-
-
-
-
 
 ### [Lien Git Du Projet] : (https://github.com/Waleedos/Elwalid-ELKHABOU_6_27092021)
+
 
 ## Soutenance & Évaluation
 >Évaluation et Soutenance planifiées pour le Mardi 19 Octobre 2021 à 14H00.
