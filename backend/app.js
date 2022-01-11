@@ -12,15 +12,14 @@ require('dotenv').config();
 // Importation de Path pour accéder au path de notre serveur
 const path = require('path');
 
+// Manipulation des fichiers
 const fs = require('fs');
-const morgan = require('morgan');
-const helmet = require('helmet');
 
-// ---------------------------------------------------------
-// DEVELOPEMENT : Pour le log !
-const Cookies = require('cookies');
-const cryptojs = require('crypto-js');
-// ---------------------------------------------------------
+// Création de log des requetes emises
+const morgan = require('morgan');
+
+// Securisation des entetes (Headers) des requets
+const helmet = require('helmet');
 
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
